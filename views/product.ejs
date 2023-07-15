@@ -1,0 +1,33 @@
+<%- include("partials/header"); -%>
+<% items.forEach((item)=>{ %>
+    <div class="col-md-6">
+        <div class="col-md-6">
+            <% for (let i = 0; i < Math.min(item.image.length, 6); i++) { %>
+              <img style="width: 500px; height: auto;" class="card-img-top mb-5 mb-md-0" src="/images/<%= item.image[i] %>" alt="..." />
+            <% } %>
+          </div>
+      </div>
+                <div class="col-md-6">
+                    <div class="small mb-1">productCode:<%=item.productCode%> </div>
+                    <h1 class="display-5 fw-bolder"><%=item.name%></h1>
+                    <div class="fs-5 mb-5">
+                        <span><%=item.price%> ₾</span>
+                    </div>
+                    <p class="lead">class:<%=item.class%> </p>
+                    <div class="d-flex">
+                        
+                        <form action="/addToCart" method="post">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="number" name="productQuantity" value="1" style="max-width: 3rem" />
+                            <input type="hidden" name="productId" value="<%=item._id%>">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="lead">
+                <%=item.specs%> 
+            </p>
+        </div>
+    </section> 
+     <% }) %>
+            <%- include("partials/footer"); -%>
